@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="UTF-8">
+  <title>CLJA 打赏系统</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="container">
+    <h1>🎁 打赏创作者</h1>
+    <p>请输入你获得的兑换码：</p>
+    <input type="text" id="input-code" placeholder="如：CLJA-1234" />
+    <button onclick="checkReward()">查看硬币</button>
+    <p id="reward-result"></p>
+  </div>
+
+  <script>
+    function checkReward() {
+      const code = document.getElementById('input-code').value.trim();
+      const coins = localStorage.getItem('reward-' + code);
+      if (coins !== null) {
+        document.getElementById('reward-result').textContent =
+          `✅ 兑换成功！你通过该码获得了 ${coins} 个硬币`;
+      } else {
+        document.getElementById('reward-result').textContent = "❌ 无效的兑换码！";
+      }
+    }
+  </script>
+</body>
+</html>

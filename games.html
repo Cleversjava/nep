@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="UTF-8" />
+  <title>CLJA 小游戏合集</title>
+  <link rel="stylesheet" href="style.css" />
+  <script src="js.js" defer></script>
+  <style>
+    .game-section {
+      border: 2px solid #eee;
+      padding: 1rem;
+      border-radius: 1rem;
+      margin-bottom: 2rem;
+      background: #fafafa;
+    }
+
+    .back-button {
+      display: block;
+      width: 100%;
+      text-align: center;
+      padding: 1rem;
+      font-size: 1.2rem;
+      background: #444;
+      color: white;
+      text-decoration: none;
+      border-radius: 10px;
+      margin-top: 2rem;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>🎮 CLJA 小游戏合集</h1>
+    <p>当前硬币：<span id="coin-count">0</span> 🪙</p>
+
+    <!-- 游戏 1：点击赚钱 -->
+    <div class="game-section">
+      <h2>游戏 1：点击赚钱</h2>
+      <button onclick="earnCoins()">点击我获得硬币</button>
+      <p id="game-log"></p>
+    </div>
+
+    <!-- 游戏 2：猜数字 -->
+    <div class="game-section">
+      <h2>游戏 2：猜数字（1~10）</h2>
+      <input type="number" id="guess-input" placeholder="输入一个数字" />
+      <button onclick="guessNumber()">猜一猜</button>
+      <p id="guess-result"></p>
+    </div>
+
+    <!-- 生成兑换码 -->
+    <div class="game-section">
+      <h2>生成打赏兑换码</h2>
+      <button onclick="generateRewardCode()">生成兑换码</button>
+      <p id="reward-code-display"></p>
+    </div>
+
+    <a class="back-button" href="https://clevers.github.io">⬅️ 返回主页</a>
+  </div>
+
+  <script>
+    let secret = Math.floor(Math.random() * 10) + 1;
+    function guessNumber() {
+      const guess = parseInt(document.getElementById("guess-input").value);
+      if (guess === secret) {
+        addCoins(10);
+        document.getElementById("guess-result").textContent = "🎉 猜对啦！奖励 10 个硬币！";
+        secret = Math.floor(Math.random() * 10) + 1;
+      } else {
+        document.getElementById("guess-result").textContent = "❌ 没猜中，再试试！";
+      }
+    }
+  </script>
+</body>
+</html>
